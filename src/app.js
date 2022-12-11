@@ -2,7 +2,6 @@ const app = {
     data () {
         return {
             'numeros': [],
-            'operacoes': [],
             'resultado': '0',
             'limpar_tela': true,
             'ultima_operacao' : '',
@@ -12,10 +11,15 @@ const app = {
     },
     methods:{
         calcular(operacao){
-            this.numeros.push(parseInt(this.resultado));
             let resultado_operacao = 0;
             this.limpar_tela = true;
-            if (this.numeros.length > 1) {
+
+            if (operacao != 'igualar') {
+                this.ultima_operacao = operacao;
+                this.numeros.push(parseInt(this.resultado));
+            }
+
+            if (this.numeros.length > 1 || operacao == 'igualar') {
                 switch (operacao) {
                     case 'somar':
                         resultado_operacao = this.numeros[this.numeros.length - 2] + this.numeros[this.numeros.length - 1];
@@ -30,6 +34,10 @@ const app = {
                         let n = this.numeros[this.numeros.length - 2] / this.numeros[this.numeros.length - 1];
                         resultado_operacao = Math.round(n * 100)/100;
                         break;
+                    case 'igualar':
+                        this.calcular(this.ultima_operacao);
+                        return;
+
                 }
                 if (resultado_operacao < 0) {
                     this.resultado = String(Math.abs(resultado_operacao)) + '-';
@@ -39,29 +47,6 @@ const app = {
                 this.numeros.push(resultado_operacao);
             }
         },
-        // multiplicar(){
-        //     this.numeros.push(parseInt(this.resultado));
-        //     let multiplicacao = 0;
-        //     this.limpar_tela = true;
-        //     if (this.numeros.length > 1) {
-        //         multiplicacao = 
-                
-        //     }
-        // },
-        // subtrair(){
-        //     this.numeros.push(parseInt(this.resultado));
-        //     let subtracao = 0;
-        //     this.limpar_tela = true;
-        //     if (this.numeros.length > 1) {
-        //         subtracao = this.numeros[this.numeros.length - 2] - this.numeros[this.numeros.length - 1];
-        //         if (subtracao < 0) {
-        //             this.resultado = String(Math.abs(subtracao)) + '-';
-        //         } else {
-        //             this.resultado = String(subtracao);
-        //         }
-        //         this.numeros.push(subtracao);
-        //     }
-        // },
         botao(num){
             if (this.resultado.length < 9) {
                 if (this.limpar_tela) {
@@ -73,12 +58,9 @@ const app = {
         },
         limpar(){
             this.numeros = [];
-            this.operacoes = [];
             this.resultado = '0';
             this.limpar_tela = true;
             this.ultima_operacao = '';
-            this.input = null;
-            this.temp = 0;
         }
     }
 }
