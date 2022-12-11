@@ -24,6 +24,21 @@ const app = {
                     break;
             }
         },
+        subtrair(){
+            console.log(this.numeros);
+            this.numeros.push(parseInt(this.resultado));
+            let subtracao = 0;
+            this.limpar_tela = true;
+            if (this.numeros.length > 1) {
+                subtracao = this.numeros[this.numeros.length - 2] - this.numeros[this.numeros.length - 1];
+                if (subtracao < 0) {
+                    this.resultado = String(Math.abs(subtracao)) + '-';
+                } else {
+                    this.resultado = String(subtracao);
+                }
+                this.numeros.push(subtracao);
+            }
+        },
         somar(){
             this.numeros.push(parseInt(this.resultado));
             let soma = 0;
