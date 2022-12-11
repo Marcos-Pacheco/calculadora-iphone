@@ -26,7 +26,7 @@
                         <td><button v-on:click="limpar" type="button" class="btn btn-circle others">AC</button></td>
                         <td><button type="button" class="btn btn-circle others">+/-</button></td>
                         <td><button type="button" class="btn btn-circle others">%</button></td>
-                        <td><button type="button" class="btn btn-circle operand">÷</button></td>
+                        <td><button v-on:click="calcular('dividir')" type="button" class="btn btn-circle operand">÷</button></td>
                     </tr>
                     <tr>
                         <td><button v-on:click="botao(7)" type="button" class="btn btn-circle digits">7</button></td>

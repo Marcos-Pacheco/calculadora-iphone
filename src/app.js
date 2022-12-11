@@ -26,6 +26,10 @@ const app = {
                     case 'multiplicar':
                         resultado_operacao = this.numeros[this.numeros.length - 2] * this.numeros[this.numeros.length - 1];
                         break;
+                    case 'dividir':
+                        let n = this.numeros[this.numeros.length - 2] / this.numeros[this.numeros.length - 1];
+                        resultado_operacao = Math.round(n * 100)/100;
+                        break;
                 }
                 if (resultado_operacao < 0) {
                     this.resultado = String(Math.abs(resultado_operacao)) + '-';
