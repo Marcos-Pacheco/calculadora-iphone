@@ -12,43 +12,52 @@ const app = {
     },
     methods:{
         calcular(operacao){
-            switch (operacao) {
-                case 'somar':
-                    this.somar();
-                    break;
-                case 'subtrair':
-                    this.subtrair();
-                    break;
-            
-                default:
-                    break;
-            }
-        },
-        subtrair(){
-            console.log(this.numeros);
             this.numeros.push(parseInt(this.resultado));
-            let subtracao = 0;
+            let resultado_operacao = 0;
             this.limpar_tela = true;
             if (this.numeros.length > 1) {
-                subtracao = this.numeros[this.numeros.length - 2] - this.numeros[this.numeros.length - 1];
-                if (subtracao < 0) {
-                    this.resultado = String(Math.abs(subtracao)) + '-';
-                } else {
-                    this.resultado = String(subtracao);
+                switch (operacao) {
+                    case 'somar':
+                        resultado_operacao = this.numeros[this.numeros.length - 2] + this.numeros[this.numeros.length - 1];
+                        break;
+                    case 'subtrair':
+                        resultado_operacao = this.numeros[this.numeros.length - 2] - this.numeros[this.numeros.length - 1];
+                        break;
+                    case 'multiplicar':
+                        resultado_operacao = this.numeros[this.numeros.length - 2] * this.numeros[this.numeros.length - 1];
+                        break;
                 }
-                this.numeros.push(subtracao);
+                if (resultado_operacao < 0) {
+                    this.resultado = String(Math.abs(resultado_operacao)) + '-';
+                } else {
+                    this.resultado = String(resultado_operacao);
+                }
+                this.numeros.push(resultado_operacao);
             }
         },
-        somar(){
-            this.numeros.push(parseInt(this.resultado));
-            let soma = 0;
-            this.limpar_tela = true;
-            if (this.numeros.length > 1) {
-                soma = this.numeros[this.numeros.length - 1] + this.numeros[this.numeros.length - 2];
-                this.resultado = String(soma);
-                this.numeros.push(soma);
-            }
-        },
+        // multiplicar(){
+        //     this.numeros.push(parseInt(this.resultado));
+        //     let multiplicacao = 0;
+        //     this.limpar_tela = true;
+        //     if (this.numeros.length > 1) {
+        //         multiplicacao = 
+                
+        //     }
+        // },
+        // subtrair(){
+        //     this.numeros.push(parseInt(this.resultado));
+        //     let subtracao = 0;
+        //     this.limpar_tela = true;
+        //     if (this.numeros.length > 1) {
+        //         subtracao = this.numeros[this.numeros.length - 2] - this.numeros[this.numeros.length - 1];
+        //         if (subtracao < 0) {
+        //             this.resultado = String(Math.abs(subtracao)) + '-';
+        //         } else {
+        //             this.resultado = String(subtracao);
+        //         }
+        //         this.numeros.push(subtracao);
+        //     }
+        // },
         botao(num){
             if (this.resultado.length < 9) {
                 if (this.limpar_tela) {
