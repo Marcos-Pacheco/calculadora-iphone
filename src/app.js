@@ -11,6 +11,29 @@ const app = {
         }
     },
     methods:{
+        calcular(operacao){
+            switch (operacao) {
+                case 'somar':
+                    this.somar();
+                    break;
+                case 'subtrair':
+                    this.subtrair();
+                    break;
+            
+                default:
+                    break;
+            }
+        },
+        somar(){
+            this.numeros.push(parseInt(this.resultado));
+            let soma = 0;
+            this.limpar_tela = true;
+            if (this.numeros.length > 1) {
+                soma = this.numeros[this.numeros.length - 1] + this.numeros[this.numeros.length - 2];
+                this.resultado = String(soma);
+                this.numeros.push(soma);
+            }
+        },
         botao(num){
             if (this.resultado.length < 9) {
                 if (this.limpar_tela) {
